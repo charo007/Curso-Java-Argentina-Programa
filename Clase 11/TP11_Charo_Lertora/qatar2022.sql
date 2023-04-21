@@ -1,0 +1,1 @@
+create database qatar2022;
