@@ -21,6 +21,10 @@ public class Producto {
                 this.IDproducto = IDproducto;
         }
 
+        public int getIDproducto() {
+                return this.IDproducto;
+        }
+
         public double precioTotal() {
                 return cantidad*precioUnitario;
         }

@@ -56,8 +56,6 @@ public class Carrito {
             nuevoProducto.agregarProductoATabla(cantidad, precioUnitario, nombre, IDproducto);
             i++;
 
-            String sql = "insert into compra (itemsCarrito, IDcompra) values ('"+ IDproducto+"','"+IDproducto + "')";
-            sistema.agregarEnTabla(sql);
 
             System.out.println("Desea cargar otro producto?: si/no ");
             respuesta = dato.next();
@@ -67,19 +65,20 @@ public class Carrito {
     public void precio() {
 
         cargarCarrito();
-
+        int IDcompra = 0;
         double total = 0;
         for (Producto producto : itemsCarrito) {
             total += producto.precioTotal();
-        }
 
+            IDcompra += producto.getIDproducto();
+        }
         if (total > 1000) {
             calcularDescuento(total);
             total -= this.descuentoARealizar;
         }
 
         this.precioCompra = total;
-        String sql = "insert into compra (precioCompra, descuentoCompra) values ('"+ precioCompra +"','"+ this.descuentoARealizar + "')";
+        String sql = "insert into compra (IDcompra, precioCompra, descuentoCompra) values ('"+ IDcompra +"','"+ precioCompra +"','"+ this.descuentoARealizar + "')";
         sistema.agregarEnTabla(sql);
     }
 
